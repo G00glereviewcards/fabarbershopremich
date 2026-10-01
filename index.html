@@ -1,0 +1,2297 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>F&A Star Beauty Salon | Coiffure & Beauté à Remich</title>
+  <meta name="description" content="F&A Star Beauty Salon à Remich. Salon de coiffure professionnel au 5 Rue du Pont. Prenez rendez-vous facilement en ligne.">
+  <meta name="theme-color" content="#0b0b0b">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --dark2: #171717;
+      --gold: #c9a45c;
+      --gold-light: #e2c986;
+      --cream: #f4efe5;
+      --white: #ffffff;
+      --muted: #a7a7a7;
+      --border: rgba(255,255,255,.10);
+      --shadow: 0 25px 80px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* =========================
+       LOADER
+    ========================== */
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #070707;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-inner {
+      text-align: center;
+    }
+
+    .loader-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .loader-line {
+      width: 180px;
+      height: 1px;
+      background: #333;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .loader-line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      background: var(--gold);
+      animation: loading 1.3s infinite ease-in-out;
+    }
+
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(300%); }
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 82px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      transition: .35s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav.scrolled {
+      background: rgba(8,8,8,.92);
+      backdrop-filter: blur(18px);
+      border-color: var(--border);
+    }
+
+    .nav-container {
+      width: min(1200px, calc(100% - 48px));
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "Playfair Display", serif;
+      color: var(--gold);
+      font-size: 16px;
+    }
+
+    .logo-text {
+      font-family: "Playfair Display", serif;
+      font-size: 19px;
+      letter-spacing: 1px;
+    }
+
+    .logo-text span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: #ddd;
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      background: var(--gold);
+      color: #080808 !important;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.68) 43%, rgba(0,0,0,.25) 100%),
+        url("https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=2200&q=90")
+        center/cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 50%, transparent 0%, rgba(0,0,0,.4) 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: min(1200px, calc(100% - 48px));
+      margin: auto;
+      padding-top: 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(55px, 8vw, 100px);
+      line-height: .95;
+      font-weight: 600;
+      max-width: 800px;
+      letter-spacing: -3px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-description {
+      margin-top: 28px;
+      max-width: 570px;
+      color: #d0d0d0;
+      font-size: 17px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 35px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--border);
+      padding: 15px 25px;
+      border-radius: 50px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      transition: .3s ease;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #090909;
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(201,164,92,.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-info {
+      position: absolute;
+      bottom: 35px;
+      left: 0;
+      right: 0;
+      z-index: 3;
+    }
+
+    .hero-info-inner {
+      width: min(1200px, calc(100% - 48px));
+      margin: auto;
+      display: flex;
+      gap: 45px;
+      color: #ddd;
+      font-size: 13px;
+    }
+
+    .hero-info-item {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hero-info-item strong {
+      color: white;
+    }
+
+    .gold-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* =========================
+       GENERAL
+    ========================== */
+
+    section {
+      padding: 115px 0;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 48px));
+      margin: auto;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 60px;
+    }
+
+    .section-heading.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 5vw, 65px);
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-top: 18px;
+      max-width: 600px;
+    }
+
+    /* =========================
+       INTRO
+    ========================== */
+
+    .intro {
+      background: var(--cream);
+      color: #111;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .intro-image {
+      height: 620px;
+      overflow: hidden;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .intro-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .intro-image:hover img {
+      transform: scale(1.04);
+    }
+
+    .intro-badge {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #111;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .intro-copy .section-title {
+      color: #111;
+    }
+
+    .intro-copy p {
+      color: #555;
+      margin: 22px 0;
+      font-size: 16px;
+    }
+
+    .signature {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: #222;
+      font-size: 25px;
+      margin-top: 30px;
+    }
+
+    /* =========================
+       SERVICES
+    ========================== */
+
+    .services {
+      background: #0d0d0d;
+    }
+
+    .services-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      align-items: center;
+      gap: 25px;
+      padding: 27px 5px;
+      border-bottom: 1px solid var(--border);
+      transition: .3s;
+    }
+
+    .service-row:hover {
+      padding-left: 18px;
+      padding-right: 18px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .service-number {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .service-name {
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+    }
+
+    .service-description {
+      color: #777;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .service-price {
+      font-size: 17px;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    /* =========================
+       GALLERY
+    ========================== */
+
+    .gallery {
+      background: #090909;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .9fr;
+      grid-template-rows: 280px 280px;
+      gap: 12px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s ease;
+      filter: saturate(.8);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: saturate(1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
+      background: linear-gradient(transparent 45%, rgba(0,0,0,.75));
+      opacity: 0;
+      transition: .3s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* =========================
+       BOOKING
+    ========================== */
+
+    .booking {
+      background:
+        linear-gradient(rgba(9,9,9,.94), rgba(9,9,9,.97)),
+        url("https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .booking-box {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      background: #141414;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .booking-info {
+      padding: 55px;
+      background:
+        linear-gradient(rgba(10,10,10,.84), rgba(10,10,10,.94)),
+        url("https://images.unsplash.com/photo-1517832207067-4db24a2ae47c?auto=format&fit=crop&w=1000&q=80")
+        center/cover;
+    }
+
+    .booking-info h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 38px;
+      margin-bottom: 18px;
+    }
+
+    .booking-info p {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .booking-points {
+      margin-top: 35px;
+      display: grid;
+      gap: 17px;
+    }
+
+    .booking-point {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .check {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: rgba(201,164,92,.13);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+    }
+
+    .booking-form {
+      padding: 55px;
+    }
+
+    .form-title {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      color: #aaa;
+      font-weight: 700;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid #292929;
+      background: #0d0d0d;
+      color: white;
+      outline: none;
+      border-radius: 8px;
+      transition: .25s;
+    }
+
+    .form-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,164,92,.08);
+    }
+
+    select.form-control {
+      cursor: pointer;
+    }
+
+    textarea.form-control {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .booking-submit {
+      margin-top: 22px;
+      width: 100%;
+      border: none;
+      padding: 17px;
+      border-radius: 8px;
+      background: var(--gold);
+      color: #080808;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .booking-submit:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .form-note {
+      text-align: center;
+      color: #666;
+      font-size: 11px;
+      margin-top: 12px;
+    }
+
+    /* =========================
+       REVIEWS
+    ========================== */
+
+    .reviews {
+      background: var(--cream);
+      color: #111;
+    }
+
+    .reviews .section-title {
+      color: #111;
+    }
+
+    .rating-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .rating-number {
+      font-family: "Playfair Display", serif;
+      font-size: 65px;
+      line-height: 1;
+    }
+
+    .stars {
+      color: #bd9140;
+      letter-spacing: 3px;
+    }
+
+    .rating-count {
+      color: #666;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .review-card {
+      background: #fff;
+      padding: 32px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid #e7e1d6;
+    }
+
+    .review-stars {
+      color: #bd9140;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+
+    .review-text {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      line-height: 1.4;
+      color: #222;
+      margin: 20px 0;
+    }
+
+    .review-author {
+      font-size: 12px;
+      color: #777;
+      font-weight: 700;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      background: #0b0b0b;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: stretch;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-items {
+      margin-top: 35px;
+      display: grid;
+      gap: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 17px;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      border: 1px solid #333;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+    }
+
+    .contact-item small {
+      color: #777;
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      margin-bottom: 3px;
+    }
+
+    .contact-item strong {
+      font-size: 15px;
+    }
+
+    .map {
+      min-height: 450px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 450px;
+      border: 0;
+      filter: grayscale(1) contrast(1.1);
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border);
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      width: min(1120px, calc(100% - 48px));
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-copy {
+      color: #666;
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 22px;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    /* =========================
+       MODAL
+    ========================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.8);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: .3s;
+    }
+
+    .modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      max-width: 510px;
+      width: 100%;
+      background: #151515;
+      border: 1px solid var(--border);
+      padding: 45px;
+      text-align: center;
+      transform: translateY(20px);
+      transition: .3s;
+    }
+
+    .modal.active .modal-box {
+      transform: translateY(0);
+    }
+
+    .success-icon {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: rgba(201,164,92,.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      margin: 0 auto 22px;
+    }
+
+    .modal h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    .modal p {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    /* =========================
+       REVEAL
+    ========================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        position: absolute;
+        top: 82px;
+        left: 0;
+        right: 0;
+        background: rgba(8,8,8,.98);
+        backdrop-filter: blur(15px);
+        padding: 25px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        display: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 15px 0;
+      }
+
+      .nav-cta {
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .intro-grid,
+      .booking-box,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-image {
+        height: 480px;
+      }
+
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 280px 220px 220px;
+      }
+
+      .gallery-item:first-child {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 80px 0;
+      }
+
+      .container,
+      .nav-container,
+      .hero-content,
+      .hero-info-inner,
+      .footer-inner {
+        width: min(100% - 30px, 1120px);
+      }
+
+      .nav {
+        height: 72px;
+      }
+
+      .nav-links {
+        top: 72px;
+      }
+
+      .logo-text {
+        font-size: 16px;
+      }
+
+      .logo-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero {
+        min-height: 800px;
+        background-position: 60% center;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+        letter-spacing: -2px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-info {
+        display: none;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .intro-image {
+        height: 400px;
+      }
+
+      .intro-badge {
+        width: 95px;
+        height: 95px;
+        font-size: 10px;
+      }
+
+      .service-row {
+        grid-template-columns: 35px 1fr auto;
+        gap: 10px;
+      }
+
+      .service-name {
+        font-size: 18px;
+      }
+
+      .service-description {
+        font-size: 11px;
+      }
+
+      .service-price {
+        font-size: 14px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 300px);
+      }
+
+      .gallery-item:first-child {
+        grid-column: auto;
+      }
+
+      .booking-info,
+      .booking-form {
+        padding: 30px 22px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .contact-grid {
+        gap: 35px;
+      }
+
+      .map,
+      .map iframe {
+        min-height: 350px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .modal-box {
+        padding: 35px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADER
+  ========================== -->
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">F&A</div>
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header class="nav" id="navbar">
+    <div class="nav-container">
+
+      <a href="#accueil" class="logo">
+        <div class="logo-mark">F&A</div>
+        <div class="logo-text">STAR <span>BEAUTY</span></div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#salon">Le salon</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#avis">Avis</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a href="#rendez-vous" class="nav-cta">Prendre rendez-vous</a>
+        </li>
+      </ul>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section class="hero" id="accueil">
+
+      <div class="hero-content reveal">
+
+        <div class="eyebrow">
+          Salon de coiffure • Remich
+        </div>
+
+        <h1>
+          Votre style.<br>
+          Votre <span>signature.</span>
+        </h1>
+
+        <p class="hero-description">
+          Bienvenue chez F&A Star Beauty Salon, votre adresse beauté
+          à Remich. Une équipe passionnée, un service professionnel
+          et une attention particulière portée à chaque détail.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#rendez-vous" class="btn btn-primary">
+            Réserver mon rendez-vous
+            <span>→</span>
+          </a>
+
+          <a href="#services" class="btn btn-secondary">
+            Découvrir nos services
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-info">
+        <div class="hero-info-inner">
+
+          <div class="hero-info-item">
+            <span class="gold-dot"></span>
+            <span><strong>4,9/5</strong> · 29 avis</span>
+          </div>
+
+          <div class="hero-info-item">
+            <span class="gold-dot"></span>
+            <span>5 Rue du Pont, Remich</span>
+          </div>
+
+          <div class="hero-info-item">
+            <span class="gold-dot"></span>
+            <span>Ouverture à 10h</span>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTRODUCTION
+    ========================== -->
+
+    <section class="intro" id="salon">
+
+      <div class="container">
+
+        <div class="intro-grid">
+
+          <div class="intro-image reveal">
+            <img
+              src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1200&q=85"
+              alt="Salon de coiffure professionnel"
+              loading="lazy"
+            >
+
+            <div class="intro-badge">
+              <span>
+                STYLE<br>
+                &<br>
+                PRÉCISION
+              </span>
+            </div>
+          </div>
+
+          <div class="intro-copy reveal">
+
+            <div class="section-label">
+              F&A Star Beauty Salon
+            </div>
+
+            <h2 class="section-title">
+              Plus qu'une coupe,<br>
+              une véritable expérience.
+            </h2>
+
+            <p>
+              Chez F&A Star Beauty Salon, chaque rendez-vous est pensé
+              pour vous offrir un moment agréable et un résultat qui
+              correspond réellement à votre style.
+            </p>
+
+            <p>
+              Notre équipe met son savoir-faire, sa précision et son
+              sens du détail au service de votre look. Que vous
+              recherchiez une coupe moderne, une barbe parfaitement
+              dessinée ou simplement un rafraîchissement, nous prenons
+              le temps de comprendre ce que vous souhaitez.
+            </p>
+
+            <a href="#rendez-vous" class="btn btn-primary">
+              Réserver une séance →
+            </a>
+
+            <div class="signature">
+              F&A Star Beauty
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SERVICES
+    ========================== -->
+
+    <section class="services" id="services">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <div class="section-label">Nos prestations</div>
+
+          <h2 class="section-title">
+            Des services pensés<br>
+            pour votre style.
+          </h2>
+
+          <p class="section-subtitle">
+            Une sélection de prestations pour prendre soin de votre
+            coupe, de votre barbe et de votre style.
+          </p>
+        </div>
+
+
+        <div class="services-list reveal">
+
+          <div class="service-row">
+            <div class="service-number">01</div>
+
+            <div>
+              <div class="service-name">
+                Coupe homme
+              </div>
+              <div class="service-description">
+                Coupe personnalisée, finition et coiffage.
+              </div>
+            </div>
+
+            <div class="service-price">
+              Sur demande
+            </div>
+          </div>
+
+
+          <div class="service-row">
+            <div class="service-number">02</div>
+
+            <div>
+              <div class="service-name">
+                Coupe + barbe
+              </div>
+              <div class="service-description">
+                Coupe complète accompagnée d'une finition barbe.
+              </div>
+            </div>
+
+            <div class="service-price">
+              Sur demande
+            </div>
+          </div>
+
+
+          <div class="service-row">
+            <div class="service-number">03</div>
+
+            <div>
+              <div class="service-name">
+                Taille de barbe
+              </div>
+              <div class="service-description">
+                Contours, taille et finition soignée.
+              </div>
+            </div>
+
+            <div class="service-price">
+              Sur demande
+            </div>
+          </div>
+
+
+          <div class="service-row">
+            <div class="service-number">04</div>
+
+            <div>
+              <div class="service-name">
+                Coupe enfant
+              </div>
+              <div class="service-description">
+                Une coupe adaptée aux plus jeunes.
+              </div>
+            </div>
+
+            <div class="service-price">
+              Sur demande
+            </div>
+          </div>
+
+
+          <div class="service-row">
+            <div class="service-number">05</div>
+
+            <div>
+              <div class="service-name">
+                Coiffage & finition
+              </div>
+              <div class="service-description">
+                Mise en forme et finition selon votre style.
+              </div>
+            </div>
+
+            <div class="service-price">
+              Sur demande
+            </div>
+          </div>
+
+        </div>
+
+        <p style="margin-top:20px;color:#666;font-size:11px;">
+          * Les prestations et tarifs peuvent varier. Contactez le salon
+          pour obtenir les tarifs actuels.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         GALERIE
+    ========================== -->
+
+    <section class="gallery" id="galerie">
+
+      <div class="container">
+
+        <div class="section-heading center reveal">
+          <div class="section-label">Notre univers</div>
+
+          <h2 class="section-title">
+            Le style dans<br>
+            chaque détail.
+          </h2>
+
+          <p class="section-subtitle" style="margin-left:auto;margin-right:auto;">
+            Découvrez l'univers F&A Star Beauty Salon.
+          </p>
+        </div>
+
+
+        <div class="gallery-grid reveal">
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=1200&q=85"
+              alt="Coiffure homme"
+              loading="lazy"
+            >
+            <div class="gallery-overlay">
+              <strong>Précision & style</strong>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=85"
+              alt="Barbier professionnel"
+              loading="lazy"
+            >
+            <div class="gallery-overlay">
+              <strong>Le savoir-faire</strong>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1000&q=85"
+              alt="Taille de barbe"
+              loading="lazy"
+            >
+            <div class="gallery-overlay">
+              <strong>Finitions</strong>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1000&q=85"
+              alt="Salon de beauté"
+              loading="lazy"
+            >
+            <div class="gallery-overlay">
+              <strong>Ambiance</strong>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1000&q=85"
+              alt="Coiffure"
+              loading="lazy"
+            >
+            <div class="gallery-overlay">
+              <strong>Votre style</strong>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOOKING
+    ========================== -->
+
+    <section class="booking" id="rendez-vous">
+
+      <div class="container">
+
+        <div class="booking-box reveal">
+
+          <div class="booking-info">
+
+            <div class="section-label">
+              Réservation
+            </div>
+
+            <h3>
+              Prenez le temps<br>
+              de prendre soin<br>
+              de vous.
+            </h3>
+
+            <p>
+              Choisissez votre prestation, votre date et votre heure
+              préférées. Nous vous recontacterons pour confirmer
+              votre rendez-vous.
+            </p>
+
+            <div class="booking-points">
+
+              <div class="booking-point">
+                <span class="check">✓</span>
+                <span>Réservation simple et rapide</span>
+              </div>
+
+              <div class="booking-point">
+                <span class="check">✓</span>
+                <span>Service professionnel</span>
+              </div>
+
+              <div class="booking-point">
+                <span class="check">✓</span>
+                <span>Rendez-vous personnalisé</span>
+              </div>
+
+              <div class="booking-point">
+                <span class="check">✓</span>
+                <span>Confirmation par le salon</span>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="booking-form">
+
+            <div class="form-title">
+              Demander un rendez-vous
+            </div>
+
+            <form id="bookingForm">
+
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label for="name">Nom complet</label>
+
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="form-control"
+                    placeholder="Votre nom"
+                    required
+                  >
+                </div>
+
+
+                <div class="form-group">
+                  <label for="phone">Téléphone</label>
+
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    class="form-control"
+                    placeholder="+352 ..."
+                    required
+                  >
+                </div>
+
+
+                <div class="form-group">
+                  <label for="service">Prestation</label>
+
+                  <select
+                    id="service"
+                    name="service"
+                    class="form-control"
+                    required
+                  >
+                    <option value="">Choisir une prestation</option>
+                    <option>Coupe homme</option>
+                    <option>Coupe + barbe</option>
+                    <option>Taille de barbe</option>
+                    <option>Coupe enfant</option>
+                    <option>Coiffage & finition</option>
+                    <option>Autre demande</option>
+                  </select>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="barber">Professionnel</label>
+
+                  <select
+                    id="barber"
+                    name="barber"
+                    class="form-control"
+                  >
+                    <option value="">Sans préférence</option>
+                    <option>Ahmed</option>
+                    <option>Autre professionnel</option>
+                  </select>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="date">Date souhaitée</label>
+
+                  <input
+                    id="date"
+                    name="date"
+                    type="date"
+                    class="form-control"
+                    required
+                  >
+                </div>
+
+
+                <div class="form-group">
+                  <label for="time">Heure souhaitée</label>
+
+                  <select
+                    id="time"
+                    name="time"
+                    class="form-control"
+                    required
+                  >
+                    <option value="">Choisir une heure</option>
+                    <option>10:00</option>
+                    <option>10:30</option>
+                    <option>11:00</option>
+                    <option>11:30</option>
+                    <option>12:00</option>
+                    <option>12:30</option>
+                    <option>13:00</option>
+                    <option>13:30</option>
+                    <option>14:00</option>
+                    <option>14:30</option>
+                    <option>15:00</option>
+                    <option>15:30</option>
+                    <option>16:00</option>
+                    <option>16:30</option>
+                    <option>17:00</option>
+                    <option>17:30</option>
+                    <option>18:00</option>
+                    <option>18:30</option>
+                    <option>19:00</option>
+                  </select>
+                </div>
+
+
+                <div class="form-group full">
+                  <label for="message">
+                    Message (facultatif)
+                  </label>
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-control"
+                    placeholder="Une demande particulière ?"
+                  ></textarea>
+                </div>
+
+              </div>
+
+
+              <button type="submit" class="booking-submit">
+                Envoyer ma demande de rendez-vous →
+              </button>
+
+              <div class="form-note">
+                Votre demande sera soumise au salon pour confirmation.
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         REVIEWS
+    ========================== -->
+
+    <section class="reviews" id="avis">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <div class="section-label">
+            Avis clients
+          </div>
+
+          <h2 class="section-title">
+            Ils parlent de<br>
+            leur expérience.
+          </h2>
+
+        </div>
+
+
+        <div class="rating-header reveal">
+
+          <div class="rating-number">
+            4,9
+          </div>
+
+          <div>
+            <div class="stars">
+              ★ ★ ★ ★ ★
+            </div>
+
+            <div class="rating-count">
+              29 avis
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="review-grid">
+
+          <article class="review-card reveal">
+
+            <div>
+              <div class="review-stars">
+                ★★★★★
+              </div>
+
+              <div class="review-text">
+                « Best service I've ever had in a barbershop ! »
+              </div>
+            </div>
+
+            <div class="review-author">
+              CLAUDIO GASPAR
+            </div>
+
+          </article>
+
+
+          <article class="review-card reveal">
+
+            <div>
+              <div class="review-stars">
+                ★★★★★
+              </div>
+
+              <div class="review-text">
+                « Best in Remich, professionals and good atmosphere. »
+              </div>
+            </div>
+
+            <div class="review-author">
+              MATTEO IVERSON
+            </div>
+
+          </article>
+
+
+          <article class="review-card reveal">
+
+            <div>
+              <div class="review-stars">
+                ★★★★★
+              </div>
+
+              <div class="review-text">
+                « Very professional and friendly staff, recommended. »
+              </div>
+            </div>
+
+            <div class="review-author">
+              JAWAD QASEM
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="contact" id="contact">
+
+      <div class="container">
+
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+
+            <div class="section-label">
+              Nous trouver
+            </div>
+
+            <h2 class="section-title">
+              Venez nous<br>
+              rencontrer.
+            </h2>
+
+            <p class="section-subtitle">
+              Retrouvez F&A Star Beauty Salon au cœur de Remich.
+              Pour toute question ou demande de rendez-vous,
+              contactez directement le salon.
+            </p>
+
+
+            <div class="contact-items">
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  ⌖
+                </div>
+
+                <div>
+                  <small>Adresse</small>
+
+                  <strong>
+                    5 Rue du Pont<br>
+                    5559 Remich, Luxembourg
+                  </strong>
+                </div>
+
+              </div>
+
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  ☎
+                </div>
+
+                <div>
+                  <small>Téléphone</small>
+
+                  <strong>
+                    <a href="tel:+352691270850">
+                      +352 691 270 850
+                    </a>
+                  </strong>
+                </div>
+
+              </div>
+
+
+              <div class="contact-item">
+
+                <div class="contact-icon">
+                  ◷
+                </div>
+
+                <div>
+                  <small>Horaires</small>
+
+                  <strong>
+                    Ouverture à partir de 10h
+                  </strong>
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div style="margin-top:35px;">
+              <a
+                href="tel:+352691270850"
+                class="btn btn-primary"
+              >
+                Appeler le salon
+              </a>
+            </div>
+
+          </div>
+
+
+          <div class="map reveal">
+
+            <iframe
+              src="https://www.google.com/maps?q=5%20Rue%20du%20Pont,%205559%20Remich,%20Luxembourg&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="F&A Star Beauty Salon - Remich"
+            ></iframe>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div class="footer-copy">
+        © <span id="year"></span> F&A Star Beauty Salon. Tous droits réservés.
+      </div>
+
+      <div class="footer-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#rendez-vous">Rendez-vous</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       SUCCESS MODAL
+  ========================== -->
+
+  <div class="modal" id="successModal">
+
+    <div class="modal-box">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        Demande envoyée
+      </h2>
+
+      <p>
+        Merci pour votre demande de rendez-vous.
+        Le salon pourra vous contacter afin de confirmer
+        la date et l'heure souhaitées.
+      </p>
+
+      <button
+        class="btn btn-primary"
+        id="closeModal"
+        style="border:0;width:100%;"
+      >
+        Fermer
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* =========================
+       LOADER
+    ========================== */
+
+    window.addEventListener("load", function () {
+
+      setTimeout(function () {
+        document.getElementById("loader").classList.add("hide");
+      }, 800);
+
+    });
+
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    const navbar = document.getElementById("navbar");
+
+    window.addEventListener("scroll", function () {
+
+      if (window.scrollY > 40) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+
+    });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+    });
+
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+      });
+
+    });
+
+
+    /* =========================
+       REVEAL ANIMATIONS
+    ========================== */
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+
+        entries.forEach(function (entry) {
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    document.querySelectorAll(".reveal").forEach(function (element) {
+      observer.observe(element);
+    });
+
+
+    /* =========================
+       DATE MINIMUM
+    ========================== */
+
+    const dateInput = document.getElementById("date");
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+
+    const day = String(today.getDate()).padStart(2, "0");
+
+    dateInput.min = `${year}-${month}-${day}`;
+
+
+    /* =========================
+       BOOKING FORM
+    ========================== */
+
+    const bookingForm = document.getElementById("bookingForm");
+
+    const successModal = document.getElementById("successModal");
+
+    const closeModal = document.getElementById("closeModal");
+
+
+    bookingForm.addEventListener("submit", function (event) {
+
+      event.preventDefault();
+
+
+      const name = document.getElementById("name").value.trim();
+
+      const phone = document.getElementById("phone").value.trim();
+
+      const service = document.getElementById("service").value;
+
+      const date = document.getElementById("date").value;
+
+      const time = document.getElementById("time").value;
+
+
+      if (!name || !phone || !service || !date || !time) {
+
+        alert(
+          "Veuillez remplir tous les champs obligatoires avant d'envoyer votre demande."
+        );
+
+        return;
+      }
+
+
+      /*
+        IMPORTANT:
+
+        Cette version affiche une confirmation côté navigateur.
+
+        Pour recevoir réellement les réservations,
+        connectez ce formulaire à un service comme :
+
+        - Formspree
+        - EmailJS
+        - Supabase
+        - Firebase
+        - votre propre backend
+
+        Le formulaire est volontairement préparé pour cette connexion.
+      */
+
+
+      successModal.classList.add("active");
+
+      bookingForm.reset();
+
+      dateInput.min = `${year}-${month}-${day}`;
+
+    });
+
+
+    /* =========================
+       CLOSE MODAL
+    ========================== */
+
+    closeModal.addEventListener("click", function () {
+
+      successModal.classList.remove("active");
+
+    });
+
+
+    successModal.addEventListener("click", function (event) {
+
+      if (event.target === successModal) {
+        successModal.classList.remove("active");
+      }
+
+    });
+
+
+    /* =========================
+       ESCAPE MODAL
+    ========================== */
+
+    document.addEventListener("keydown", function (event) {
+
+      if (event.key === "Escape") {
+        successModal.classList.remove("active");
+      }
+
+    });
+
+
+    /* =========================
+       CURRENT YEAR
+    ========================== */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /* =========================
+       SMOOTH BUTTON EFFECT
+    ========================== */
+
+    document.querySelectorAll(".btn").forEach(function (button) {
+
+      button.addEventListener("mousedown", function () {
+        button.style.transform = "scale(.98)";
+      });
+
+      button.addEventListener("mouseup", function () {
+        button.style.transform = "";
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
+```
